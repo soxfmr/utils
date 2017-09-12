@@ -1,0 +1,7 @@
+#!/bin/sh
+# Attach to the current running docker container
+if [[ -z "$1" ]]; then
+    echo "$0 <containerID|name>"
+    exit
+fi
+docker exec -it $1 bash 

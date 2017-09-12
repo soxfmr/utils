@@ -1,0 +1,10 @@
+#!/bin/bash
+# Opening a HTTP server on current directory
+
+PORT=8000
+
+if [[ -n "$1" ]]; then
+    PORT=$1
+fi
+
+python -m SimpleHTTPServer $PORT
