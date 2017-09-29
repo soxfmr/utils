@@ -1,0 +1,4 @@
+#!/bin/sh
+# Open the Finder in current folder
+
+open .
