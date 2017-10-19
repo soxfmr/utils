@@ -1,7 +1,15 @@
 #!/bin/sh
 # Attach to the current running docker container
+
+PROGRAM=/bin/bash
+
 if [[ -z "$1" ]]; then
-    echo "$0 <containerID|name>"
+    echo "$0 <containerID|name> [program]"
     exit
 fi
-docker exec -it $1 bash 
+
+if [[ -n "$2" ]]; then
+    PROGRAM="$2"
+fi
+
+docker exec -it $1 $PROGRAM 
