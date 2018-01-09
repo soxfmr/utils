@@ -1,0 +1,18 @@
+#!/bin/sh
+# Generate forwarding rule for a single port
+
+if [[ $# -ne 5 ]]; then
+    echo "$0 <from> <port> <to> <port> <protocol>"
+    exit
+fi
+
+local_ip=$1
+local_port=$2
+remote_ip=$3
+remote_port=$4
+protocol=$5
+
+echo "[*] Forwarding $local_ip:$local_port to $remote_ip:$remote_port"
+echo "[*] Replace the following rules to iptables:\n"
+echo "iptables -t nat -A PREROUTING -p $protocol --dport $local_port -j DNAT --to-dest $remote_ip:$remote_port"
+echo "iptables -t nat -A POSTROUTING -d $remote_ip -p $protocol --dport $remote_port -j SNAT --to $local_ip"
